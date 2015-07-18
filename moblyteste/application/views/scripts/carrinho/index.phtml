@@ -1,0 +1,45 @@
+<section id="content">    
+    <ul class="column">
+        <? $totalItens = sizeof($this->itens) ?>
+
+        <? if($totalItens):?>     
+        <table class="tabelaCarrinho">
+            <tr>
+                <td class="titulo">Codigo</td>
+                <td class="titulo">Produto</td>
+                <td class="titulo">Valor</td>
+                <td class="titulo">Ação</td>
+            </tr>
+            <? foreach ($this->itens as $produto): ?>
+            <? $subTotal += $produto->precovenda; ?>
+            <tr id="<?= $produto->iditem ?>">
+                <td><?= $produto->codigo ?></td>
+                <td><?= substr($produto->nome, 0, 40) ?></td>
+                <td><?= number_format($produto->precovenda, 2, ',', '.'); ?></td>
+                <td class="excluirItem" title="excluir item do carrinho">X</td>
+            </tr>
+            
+            <? endforeach; ?>
+            <tr class="total" id="<?= $produto->iditem ?>">
+                <td></td>
+                <td>Total:</td>
+                <td><?= number_format($subTotal, 2, ',', '.'); ?></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2"><a href="<?= $this->baseUrl() ?>/vitrine"> Continuar Comprando</a></td>
+                <td colspan="2"><a href="<?= $this->baseUrl() ?>/carrinho/finalizar">Finalizar Compra</a></td>
+            </tr>
+        </table>
+
+
+        <? else: ?>
+
+        <div class="naoEncontrado">Carrinho Vazio</div>
+
+        <? endif; ?>
+    </ul>
+</section>
+
+
+

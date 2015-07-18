@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+    <head>        
+        <meta charset='utf-8'>
+        <title>Teste Técnico</title>        
+        <?= $this->headLink()->appendStylesheet($this->baseUrl() . '/css/styles.css'); ?>
+        <?= $this->headScript()->appendFile($this->baseUrl() . '/js/jquery.min.js'); ?>
+        <?= $this->headScript()->appendFile($this->baseUrl() . '/js/geral.js'); ?>
+    </head>
+    <body>
+
+        <header>
+            <h1></h1>
+        </header>
+        <nav>
+            <ul>
+                <li class="nomeUsuario">Bem Vindo <?= $this->nomeUsuario ?></li>
+                <li <?= $this->controllerName == 'vitrine' ? 'class="selected"' : null ?>>
+                    <a href="<?= $this->baseUrl() ?>/vitrine">Home</a>
+                </li>
+                <li <?= $this->controllerName == 'pedidos' ? 'class="selected"' : null ?>>
+                    <a href="<?= $this->baseUrl() ?>/pedidos">Pedidos</a>
+                </li>
+                <li <?= $this->controllerName == 'carrinho' ? 'class="selected"' : null ?>>
+                    <a href="<?= $this->baseUrl() ?>/carrinho">Carrinho <?= $this->msgItens ?></a>
+                </li>
+                <li><a href="#" class="sair">Sair</a></li>
+            </ul>
+        </nav>
+        
+   
+        
+        <?= $this->layout()->content; ?>
+
+    </body>
+</html>
+
+
+

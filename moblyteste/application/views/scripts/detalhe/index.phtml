@@ -1,0 +1,24 @@
+
+<section id="content" class="conteudoProdutoDetalhe">    
+    <ul class="column">
+        <form action="<?= $this->baseUrl() ?>/carrinho/adicionar-item" method="post" >
+            <input type="hidden" name="idproduto" value="<?= $this->produto->id ?>"/>
+            <li class="modalProduto">
+                <section class="block">
+                    <img class="imgProdutoDetalhe" src="<?= $this->baseUrl() ?>/../data/<?= $this->produto->imagem ?>" alt="<?= $this->produto->nome ?>"  />
+                </section>
+            </li>      
+            <li class="modalProduto descricao">
+                <div class="nomeProdutoDetalhe"><?= $this->produto->nome ?></div>
+                <div class="descricaoProdutoDetalhe"><?= $this->produto->descricao ?></div>
+                <div class="box">
+                    <div class="precoProdutoDetalhe" >R$ <?= number_format($this->produto->precovenda, 2, ',', '.'); ?></div> 
+                    <input class="botaoComprar" type="submit" value="Comprar"/>
+                </div>
+            </li>   
+        </form>
+    </ul>
+</section>
+
+
+

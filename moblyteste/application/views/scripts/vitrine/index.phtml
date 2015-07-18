@@ -1,0 +1,95 @@
+<form action="<?= $this->baseUrl(); ?>/vitrine" method="post">
+    <!-- VALOR NECESSARIO PARA QUE ENTRE NO IF DE POST-->
+    <input type="hidden" name="hidden" value="1"/> 
+
+    <section id="intro">
+        <header>
+            <h2></h2>
+        </header>
+        <!-- CATEGORIAS -->
+        <table class="tableFiltro">
+            <tr>
+                <td class="titulo">Tipo</td>
+            </tr>
+            <? foreach($this->categorias as $categoria):?>
+            <tr>
+                <td class="dados">
+                    <? $checked = in_array($categoria->id,$this->filtros->categoria) ? 'checked' : null ?>
+                    <input type="checkbox" name="categoria[]" value="<?= $categoria->id ?>" <?= $checked ?>/>
+                    <?= $categoria->nome ?>
+                </td>
+            </tr>
+            <? endforeach; ?>
+        </table>
+
+        <!-- SUBCATEGORIAS -->
+        <table class="tableFiltro">
+            <tr>
+                <td class="titulo">Sistema Operacional</td>
+            </tr>
+            <? foreach($this->subCategorias as $subCategoria): ?>
+            <tr>
+                <td class="dados">
+
+                    <? $checked = in_array($subCategoria->id,$this->filtros->subCategoria) ? 'checked' : null ?>
+                    <input type="checkbox" name="subcategoria[]" value="<?= $subCategoria->id ?>" <?= $checked ?>/>
+                    <?= $subCategoria->nome ?>
+                </td>
+            </tr>
+            <? endforeach; ?>
+        </table>
+
+        <!-- CARACTERÍSTICAS -->
+        <table class="tableFiltro">
+            <tr>
+                <td class="titulo">Características</td>
+            </tr>
+            <? foreach($this->caracteristicas as $caracteristica):?>
+            <tr>
+                <td class="dados">
+
+                    <? $checked = in_array($caracteristica->id,$this->filtros->caracteristica) ? 'checked' : null ?>
+                    <input type="checkbox" name="caracteristica[]" value="<?= $caracteristica->id ?>" <?= $checked ?>/>
+                    <?= $caracteristica->nome ?>
+                </td>
+            </tr>
+            <? endforeach; ?>
+        </table>
+    </section>
+</form>
+
+<section id="content">    
+    <ul class="column">
+        <? $totalProdutos = sizeof($this->produtos) ?>
+
+        <? if($totalProdutos):?>     
+
+        <div class="naoEncontrado"><?= $totalProdutos . ' Produto(s) Encontrado(s)' ?></div>
+
+        <? foreach ($this->produtos as $produto): ?>
+        <li>
+            <? $link = 'detalhe/index/produto/' . base64_encode($produto['id']); ?>
+            <a href="<?= $link ?>">
+                <section class="block">
+
+                    <img class="imgProduto" src="<?= $this->baseUrl() ?>/../data/<?= $produto['imagem'] ?>" alt="<?= $produto['nome'] ?>"  />
+
+                    <? $nome = $produto['nome'] ?>
+                    <? $nome = strlen($nome) > 60 ? substr($nome,0,57) . '...' : $nome ?>
+                    <a class="nomeProduto" href="<?= $link ?>"><?= $nome ?></a>
+
+                    <div class="precoProduto" >R$ <?= number_format($produto['precovenda'], 2, ',', '.'); ?></div> 
+                </section>
+            </a>
+        </li>
+        <? endforeach; ?>
+        <? else: ?>
+
+        <div class="naoEncontrado">Produto Nao Encontrado</div>
+
+        <? endif; ?>
+    </ul>
+</section>
+
+
+

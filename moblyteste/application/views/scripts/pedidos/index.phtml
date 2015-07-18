@@ -1,0 +1,36 @@
+<section id="content">    
+    <ul class="column">
+        <? $totalPedidos = sizeof($this->pedidos) ?>
+
+        <? if($totalPedidos):?>     
+        <table class="tabelaCarrinho">
+            <tr>
+                <td class="titulo">Pedido</td>
+                <td class="titulo">Data</td>
+                <td class="titulo">Valor</td>
+                <td class="titulo">Forma Pagamento</td>
+            </tr>
+
+            <? foreach ($this->pedidos as $pedido): ?>
+            <tr>
+                <td><?= $pedido->codigo ?></td>
+                <? $dt = new Zend_Date($pedido->criadoem);?>
+                <td><?= $dt->get('dd/MM/YYYY hh:mm') ?></td>
+                <td><?= number_format($pedido->total, 2, ',', '.'); ?></td>
+                <td><?= $pedido->forma ?></td>
+            </tr>            
+            <? endforeach; ?>
+
+        </table>
+
+
+        <? else: ?>
+
+        <div class="naoEncontrado">Nenhum pedido encontrado</div>
+
+        <? endif; ?>
+    </ul>
+</section>
+
+
+

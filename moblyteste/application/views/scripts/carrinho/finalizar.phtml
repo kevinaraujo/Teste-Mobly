@@ -1,0 +1,82 @@
+<section id="content">    
+    <ul class="column">
+        <h2>Dados Pessoais</h2>
+        <table class="tabelaDadosPessoais">
+            <tr>
+                <td><b>Nome:</b></td>
+                <td><?= $this->usuario->nome ?></td>
+                <td><b>Email:</b></td>
+                <td><?= $this->usuario->email ?></td>
+            </tr>
+        </table>
+        <h2>Dados de Entrega</h2>
+        <table class="tabelaDadosPessoais">
+            <tr>
+                <td><b>Endereço:</b></td>
+                <td><?= $this->usuario->endereco ?></td>
+                <td><b>N:</b></td>
+                <td><?= $this->usuario->numero ?></td>
+                <td><b>Complemento:</b></td>
+                <td><?= $this->usuario->complemento ?></td>
+                <td><b>Cep:</b></td>
+                <td><?= $this->usuario->cep ?></td>
+            </tr>
+            <tr>
+                <td><b>Bairro:</b></td>
+                <td><?= $this->usuario->bairro ?></td>
+                <td><b>Cidade:</b></td>
+                <td><?= $this->usuario->cidade ?></td>
+                <td><b>Estado:</b></td>
+                <td><?= $this->usuario->estado ?></td>
+            </tr>
+        </table>
+
+        <h2>Produtos</h2>
+        <table class="tabelaCarrinho">
+            <tr>
+                <td class="titulo">Codigo</td>
+                <td class="titulo">Produto</td>
+                <td class="titulo">Valor</td>
+            </tr>
+            <? foreach ($this->itens as $produto): ?>
+            <? $subTotal += $produto->precovenda; ?>
+            <tr id="<?= $produto->iditem ?>">
+                <td><?= $produto->codigo ?></td>
+                <td><?= substr($produto->nome, 0, 40) ?></td>
+                <td><?= number_format($produto->precovenda, 2, ',', '.'); ?></td>
+            </tr>
+
+            <? endforeach; ?>
+            <tr class="total" id="<?= $produto->iditem ?>">
+                <td></td>
+                <td>Total:</td>
+                <td><?= number_format($subTotal, 2, ',', '.'); ?></td>
+            </tr>
+        </table>
+
+        <h2>Forma de Pagamento</h2>
+        <form name="formapagamento" action="<?= $this->baseUrl()?>/carrinho/fechar-pedido" method="post">
+            <table class="tabelaFormasPagamento">
+                <tr>    
+                    <? foreach($this->formas as $forma): ?>
+                    <td>
+                        <input type="radio" name="idforma" value="<?= $forma->id ?>"/>
+                        <?= $forma->descricao ?>
+                    </td>
+                    <? endforeach; ?>
+                </tr>
+            </table>
+        </form>
+        
+        <table class="tabelaFormasPagamento">
+            <tr>
+                <td colspan="2" class="center">
+                    <a href="#" id="finalizarPedido">Finalizar Compra</a>
+                </td>
+            </tr>
+        </table>
+    </ul>
+</section>
+
+
+

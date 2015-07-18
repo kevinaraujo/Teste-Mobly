@@ -1,0 +1,80 @@
+<style>
+    .conteudo{
+        width:300px;
+        height:200px;
+        margin: 0px auto !important;
+    }
+    .modal{
+        height:150px;
+        width:250px;
+        margin: auto;
+    }
+    h1{ color: #FFFFFF }
+
+    span#zf-name
+    {
+        color: #91BE3F;
+    }
+    .center{
+        text-align: center;
+    }
+
+    .mensagem{
+        color : #FF0000;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
+<html lang="en"><head>
+         <meta charset='utf-8'>
+        <title>Teste</title>
+        <?= $this->headLink()->appendStylesheet($this->baseUrl() . '/css/styles.css'); ?>
+        <?= $this->headScript()->appendFile($this->baseUrl() . '/js/jquery.min.js');?>
+        <?= $this->headScript()->appendFile($this->baseUrl() . '/js/geral.js');?>
+    </head>
+    <body>
+
+        <header>
+            <h1></h1>
+        </header>
+
+        <section id="intro" class="conteudo">
+           
+            <form method="post" action="login/validar">
+                <table class="modal">
+                    <? if($this->erro): ?>
+                    <tr>
+                        <td colspan="2"  class="mensagem">Usuário e/ou Senha Incorreto(s)</td>
+                    </tr>
+                    <? endif; ?>
+
+                    <tr>
+                        <td colspan="2" class="center"><h2>Login</h2></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" name="email"/></td>
+                    </tr>
+                    <tr>
+                        <td>Senha:</td>
+                        <td><input type="text" name="senha"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="center" ><input type="submit" value="Entrar"/></td>
+                    </tr>
+                </table>
+            </form>
+        </section>
+
+
+
+
+
+        <!-- Free template created by http://freehtml5templates.com -->
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,6 @@
+Teste Técnico
+
+Para que o projeto funcione, deve-se alterar no application.ini os dados de conexao do BD. o link do projeto no browser é "http://localhost/moblyteste/public/" (se for local).
+A tela inicial é de login, segue os dados:
+
+email:user@mobly.com.br senha:123
